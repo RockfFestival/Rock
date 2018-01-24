@@ -9,7 +9,8 @@ public class GameMgr : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		PhotonNetwork.isMessageQueueRunning = true;
-		GetConnectPlayerCount ();
+
+		//GetConnectPlayerCount ();
 	
 	}
 
@@ -17,7 +18,7 @@ public class GameMgr : MonoBehaviour {
 	public void GetConnectPlayerCount(){
 		PhotonNetwork.isMessageQueueRunning = true;
 		Room currRoom = PhotonNetwork.room;
-		txtConnect.text = currRoom.PlayerCount.ToString() + "/" + currRoom.MaxPlayers.ToString();
+		txtConnect.text = currRoom.PlayerCount.ToString () + "/"+ currRoom.MaxPlayers.ToString();
 
 	}
 	void OnPhotonPlayerConnected(PhotonPlayer Player){

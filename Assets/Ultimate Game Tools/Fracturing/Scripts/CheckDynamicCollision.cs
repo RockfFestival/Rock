@@ -7,6 +7,7 @@ using System.Collections.Generic;
 /// </summary>
 public class CheckDynamicCollision : MonoBehaviour
 {
+	public GameObject juk;
     void Start()
     {
         // Enable fracturable object collider
@@ -56,8 +57,9 @@ public class CheckDynamicCollision : MonoBehaviour
             if(collision.relativeVelocity.magnitude > fracturedObject.EventDetachMinVelocity && fMass > fracturedObject.EventDetachMinVelocity)
             {
                 // Disable fracturable object collider
-
-				fracturedObject.EventDetachMinMass-=collision.rigidbody.mass;
+				if (collision.rigidbody != null) {
+					fracturedObject.EventDetachMinMass -= collision.rigidbody.mass;
+				}
 				if (fracturedObject.EventDetachMinMass < 0) {
 					fracturedObject.GetComponent<Collider> ().enabled = false;
 
