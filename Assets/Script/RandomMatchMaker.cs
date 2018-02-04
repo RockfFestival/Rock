@@ -10,9 +10,11 @@ public class RandomMatchMaker : Photon.PunBehaviour {
 	public InputField roomName;
 	public GameObject scrollContents;
 	public GameObject roomItem;
-	public Camera loginCamera;
 	public Camera gameCamera;
-
+	public Canvas loginCanvas;
+	public Canvas ExitCanvas;
+	public Canvas ChatCanvas;
+	public Canvas AuctionCanvas;
     public Quaternion Second = Quaternion.identity;
     public Quaternion Third = Quaternion.identity;
     public Quaternion Forth = Quaternion.identity;
@@ -22,10 +24,13 @@ public class RandomMatchMaker : Photon.PunBehaviour {
     void Start () {
 		if (!PhotonNetwork.connected) {
 			PhotonNetwork.ConnectUsingSettings("0.1");
+		
 		}
 		roomName.text = "ROOM_" + Random.Range (0, 999).ToString ("000");
-		loginCamera.enabled = true;
-		gameCamera.enabled = false;
+		ExitCanvas.enabled = false;
+		ChatCanvas.enabled = false;
+		loginCanvas.enabled = true;
+		AuctionCanvas.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -48,9 +53,13 @@ public class RandomMatchMaker : Photon.PunBehaviour {
     }
 	public override void OnJoinedRoom(){
 		mgr.GetConnectPlayerCount ();
+		mgr.Join ();
 		Debug.Log ("Enter room");
-		loginCamera.enabled = false;
-		gameCamera.enabled = true;
+		//loginCamera.enabled = false;
+		//gameCamera.enabled = true;
+		loginCanvas.enabled = false;
+		ExitCanvas.enabled = true;
+		ChatCanvas.enabled = true;
 		CreateStone ();
 	}
 	void CreateStone(){
@@ -63,6 +72,7 @@ public class RandomMatchMaker : Photon.PunBehaviour {
 		switch(crRoom.PlayerCount){
 		case 1:
 			PhotonNetwork.Instantiate ("FracturedStone", new Vector3 (15.0f, 6.9f, -73.25f), Quaternion.identity, 0);
+
 			break;
 		case 2:
 			PhotonNetwork.Instantiate ("FracturedStone", new Vector3 (15.0f, 6.9f, 20.0f), Second, 0);
