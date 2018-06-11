@@ -16,7 +16,7 @@ public class MoveStone : MonoBehaviour {
 	private Vector3 currpos = Vector3.zero;
 	private Quaternion currRot = Quaternion.identity;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 
         rbody = GetComponent<Rigidbody>();
         tr = GetComponent<Transform>();
@@ -51,6 +51,12 @@ public class MoveStone : MonoBehaviour {
 			
 			h = Input.GetAxis ("Horizontal");
 			v = Input.GetAxis ("Vertical");
+
+            if(Input.GetKey(KeyCode.M))
+            {
+                Debug.Log("KEY 'M' IS DONW");
+                tr.localScale = new Vector3(2,2,2);
+            }
 
 
 			if (Input.GetKey (KeyCode.UpArrow) == true) {

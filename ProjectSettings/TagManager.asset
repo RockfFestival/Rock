@@ -5,6 +5,17 @@ TagManager:
   serializedVersion: 2
   tags:
   - ROOM_ITEM
+  - Trash_Stone
+  - Stone
+  - PROPEL
+  - Fence
+  - Ground
+  - waitRoom
+  - tile
+  - rightTile
+  - leftTile
+  - frontTile
+  - backTile
   layers:
   - Default
   - TransparentFX

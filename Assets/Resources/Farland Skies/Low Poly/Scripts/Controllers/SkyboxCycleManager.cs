@@ -29,7 +29,7 @@ namespace Borodar.FarlandSkies.LowPoly
         {
             if (!Paused)
             {
-                CycleProgress += (Time.deltaTime / CycleDuration) * 10f;
+                CycleProgress += (Time.deltaTime / CycleDuration) * 80f;
                 CycleProgress %= 100f;
             }
 
